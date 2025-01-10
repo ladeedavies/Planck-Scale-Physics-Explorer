@@ -11,3 +11,5 @@ P
  tests/experimental-setup.test.ts,f/0/f0ab9c072a84e1593b1a4e1f689bea60f686cff8
 O
 contracts/planck-scale-nft.clar,8/e/8e807f82d04e47b4bcb80e8c6b6ddea784d31a6f
+N
+tests/planck-scale-nft.test.ts,e/1/e10c05bf06a31f4da4b2046c79f54a691091c689
