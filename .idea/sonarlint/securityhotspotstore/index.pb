@@ -7,3 +7,5 @@ L
 contracts/data-analysis.clar,2/0/204b0b7174eb82a6565355b25a888bf68fe9ad23
 Q
 !contracts/experimental-setup.clar,3/5/35ff25b7fb6eead0e6a4cc180956af71af625489
+P
+ tests/experimental-setup.test.ts,f/0/f0ab9c072a84e1593b1a4e1f689bea60f686cff8
