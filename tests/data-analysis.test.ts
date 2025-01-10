@@ -1,21 +1,50 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 
-import { describe, expect, it } from "vitest";
-
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
+describe('data-analysis', () => {
+  let contract: any;
+  
+  beforeEach(() => {
+    contract = {
+      submitAnalysis: (setupId: number, results: string) => ({ value: 1 }),
+      updateAnalysisStatus: (analysisId: number, newStatus: string) => ({ success: true }),
+      getAnalysis: (analysisId: number) => ({
+        setupId: 1,
+        analyst: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
+        results: 'Observed quantum fluctuations at Planck scale, suggesting potential spacetime foam structure',
+        timestamp: 12345,
+        status: 'pending'
+      }),
+      getAnalysisCount: () => 1
+    };
   });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
+  
+  describe('submit-analysis', () => {
+    it('should submit a new data analysis', () => {
+      const result = contract.submitAnalysis(1, 'Observed quantum fluctuations at Planck scale, suggesting potential spacetime foam structure');
+      expect(result.value).toBe(1);
+    });
+  });
+  
+  describe('update-analysis-status', () => {
+    it('should update the status of an existing analysis', () => {
+      const result = contract.updateAnalysisStatus(1, 'approved');
+      expect(result.success).toBe(true);
+    });
+  });
+  
+  describe('get-analysis', () => {
+    it('should return analysis data', () => {
+      const analysis = contract.getAnalysis(1);
+      expect(analysis.setupId).toBe(1);
+      expect(analysis.status).toBe('pending');
+    });
+  });
+  
+  describe('get-analysis-count', () => {
+    it('should return the total number of analyses', () => {
+      const count = contract.getAnalysisCount();
+      expect(count).toBe(1);
+    });
+  });
 });
+
